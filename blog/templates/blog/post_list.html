@@ -1,19 +1,13 @@
-<html>
-    <head>
-        <title>MY APP blog</title>
-    </head>
-    <body>
-        <div>
-<p>published: 31.10.2015, 23:14</p>
-</div>
-<div>
-            <input type="text" value="VINAY KUMAR" placeholder="username"></input><input type="button" value="SUBMIT"></input>
+{% extends "blog/base.html" %}
 
-        <div>
-            <p>published: 4.06.2016, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaks }}</p>
         </div>
-    </body>
-</html>
-
+    {% endfor %}
+{% endblock %}
