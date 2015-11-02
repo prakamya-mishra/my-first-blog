@@ -1,0 +1,10 @@
+from django.shortcuts import render
+
+if form.is_valid():
+    name = form.cleaned_data['name']
+    m_tags = form.cleaned_data['m_tags']
+    object = Food(name=name)
+    object.save()
+    for m_tag in m_tags:
+        object.tags.add(m_tag)
+    return HttpResponseRedirect('/thanks/'
